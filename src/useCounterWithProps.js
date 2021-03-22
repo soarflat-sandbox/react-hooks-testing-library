@@ -5,5 +5,9 @@ export default function useCounterWithProps(initialValue = 0) {
   const increment = useCallback(() => setCount(x => x + 1), []);
   const reset = useCallback(() => setCount(initialValue), [initialValue]);
 
+  if (count > 10000) {
+    throw new Error("It's over 10000!");
+  }
+
   return { count, increment, reset };
 }

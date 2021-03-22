@@ -30,3 +30,13 @@ test('should reset counter to updated initial value', () => {
 
   expect(result.current.count).toBe(10);
 });
+
+it('should throw when over 10000', () => {
+  const { result } = renderHook(() => useCounterWithProps(10000));
+
+  act(() => {
+    result.current.increment();
+  });
+
+  expect(result.error).toEqual(Error("It's over 10000!"));
+});
